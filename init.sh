@@ -8,9 +8,7 @@ else
     echo "Creating new bench..."
 fi
 
-export PATH="${NVM_DIR}/versions/node/v${NODE_VERSION_DEVELOP}/bin/:${PATH}"
-
-bench init --skip-redis-config-generation frappe-bench
+bench init --skip-redis-config-generation frappe-bench --version version-16
 
 cd frappe-bench
 
@@ -25,7 +23,7 @@ sed -i '/redis/d' ./Procfile
 sed -i '/watch/d' ./Procfile
 
 bench get-app telephony
-bench get-app helpdesk
+bench get-app helpdesk --branch main
 
 bench new-site helpdesk.localhost \
 --force \
